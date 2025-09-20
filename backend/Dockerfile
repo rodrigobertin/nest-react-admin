@@ -23,7 +23,8 @@ COPY package.json .
 COPY yarn.lock .
 COPY ormconfig.js .
 
-RUN yarn install --production
+RUN yarn install --frozen-lockfile --production
+RUN yarn cache clean
 
 COPY --from=build /app/dist ./dist
 
