@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import { ILike } from 'typeorm';
 
 import { CreateUserDto, UpdateUserDto } from './user.dto';
