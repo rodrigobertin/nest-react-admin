@@ -1,4 +1,4 @@
-import { ReactElement, useContext } from 'react';
+import { ComponentType, ReactElement, useContext } from 'react';
 import { Navigate as Redirect } from 'react-router-dom';
 
 import { AuthenticationContext } from './context/AuthenticationContext';
@@ -6,22 +6,26 @@ import { AuthenticationContext } from './context/AuthenticationContext';
 export { Route } from 'react-router-dom';
 
 interface PrivateRouteProps {
-  children: ReactElement;
+  component: ComponentType;
   roles?: string[];
 }
 
-export function PrivateRoute({ children, roles, ...rest }: PrivateRouteProps) {
+export function PrivateRoute({
+  component: Component,
+  roles,
+  ...rest
+}: PrivateRouteProps) {
   const { authenticatedUser } = useContext(AuthenticationContext);
 
   if (authenticatedUser) {
     if (roles) {
       if (roles.includes(authenticatedUser.role)) {
-        return children;
+        return <Component {...rest} />;
       } else {
         return <Redirect to="/" />;
       }
     } else {
-      return children;
+      return <Component {...rest} />;
     }
   } else {
     return <Redirect to="/login" />;

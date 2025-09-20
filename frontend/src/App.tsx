@@ -36,23 +36,20 @@ export default function App() {
   return isLoaded ? (
     <BrowserRouter>
       <Routes>
-        <PrivateRoute>
-          <Route path="/" element={Dashboard} />
-        </PrivateRoute>
+        {/* Protected routes */}
+        <Route path="/" element={<PrivateRoute component={Dashboard} />} />
+        <Route path="/courses" element={<PrivateRoute component={Courses} />} />
+        <Route
+          path="/courses/:id"
+          element={<PrivateRoute component={Contents} />}
+        />
+        <Route
+          path="/users"
+          element={<PrivateRoute component={Users} roles={['admin']} />}
+        />
 
-        <PrivateRoute roles={['admin']}>
-          <Route path="/users" element={Users} />
-        </PrivateRoute>
-
-        <PrivateRoute>
-          <Route path="/courses" element={Courses} />
-        </PrivateRoute>
-
-        <PrivateRoute>
-          <Route path="/courses/:id" element={Contents} />
-        </PrivateRoute>
-
-        <AuthRoute exact path="/login" component={Login} />
+        {/* Public route */}
+        <Route path="/login" element={<AuthRoute component={Login} />} />
       </Routes>
     </BrowserRouter>
   ) : null;
