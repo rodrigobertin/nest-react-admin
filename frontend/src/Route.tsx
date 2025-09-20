@@ -1,4 +1,4 @@
-import { ComponentType, ReactElement, useContext } from 'react';
+import { ComponentType, useContext } from 'react';
 import { Navigate as Redirect } from 'react-router-dom';
 
 import { AuthenticationContext } from './context/AuthenticationContext';
