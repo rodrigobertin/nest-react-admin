@@ -27,6 +27,6 @@ RUN yarn install --production
 
 COPY --from=build /app/dist ./dist
 
-EXPOSE 5000
+EXPOSE 5001
 
 ENTRYPOINT [ "yarn", "start:prod" ]

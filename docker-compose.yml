@@ -2,6 +2,10 @@ services:
   database:
     image: postgres:alpine
     container_name: database
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./database:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: carna-database
       POSTGRES_USER: carna

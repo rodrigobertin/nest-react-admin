@@ -95,9 +95,9 @@ yarn
 $ yarn start
 ```
 
-Backend will be started on http://localhost:5000
+Backend will be started on http://localhost:5001
 
-Swagger Docs on http://localhost:5000/api/docs
+Swagger Docs on http://localhost:5001/api/docs
 
 ## Frontend
 
