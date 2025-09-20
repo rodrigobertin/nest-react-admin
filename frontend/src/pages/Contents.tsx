@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Loader, Plus, X } from 'react-feather';
 import { useForm } from 'react-hook-form';
-import { useQuery } from 'react-query';
+import { useQuery, useQueryClient } from 'react-query';
 import { useParams } from 'react-router';
 
 import ContentsTable from '../components/content/ContentsTable';
@@ -13,6 +13,7 @@ import contentService from '../services/ContentService';
 import courseService from '../services/CourseService';
 
 export default function Course() {
+  const queryClient = useQueryClient();
   const { id } = useParams<{ id: string }>();
   const { authenticatedUser } = useAuth();
 
@@ -37,17 +38,15 @@ export default function Course() {
         name: name || undefined,
         description: description || undefined,
       }),
-    {
-      refetchInterval: 1000,
-    },
   );
 
-  const saveCourse = async (createContentRequest: CreateContentRequest) => {
+  const saveContent = async (createContentRequest: CreateContentRequest) => {
     try {
       await contentService.save(id, createContentRequest);
       setAddContentShow(false);
       reset();
       setError(null);
+      await queryClient.invalidateQueries([`contents-${id}`]);
     } catch (error) {
       setError(error.response.data.message);
     }
@@ -107,7 +106,7 @@ export default function Course() {
 
         <form
           className="flex flex-col gap-5 mt-5"
-          onSubmit={handleSubmit(saveCourse)}
+          onSubmit={handleSubmit(saveContent)}
         >
           <input
             type="text"

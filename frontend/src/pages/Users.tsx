@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Loader, Plus, X } from 'react-feather';
 import { useForm } from 'react-hook-form';
-import { useQuery } from 'react-query';
+import { useQuery, useQueryClient } from 'react-query';
 
 import Layout from '../components/layout';
 import Modal from '../components/shared/Modal';
@@ -12,7 +12,7 @@ import userService from '../services/UserService';
 
 export default function Users() {
   const { authenticatedUser } = useAuth();
-
+  const queryClient = useQueryClient();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [username, setUsername] = useState('');
@@ -33,9 +33,6 @@ export default function Users() {
         })
       ).filter((user) => user.id !== authenticatedUser.id);
     },
-    {
-      refetchInterval: 1000,
-    },
   );
 
   const {
@@ -51,6 +48,7 @@ export default function Users() {
       setAddUserShow(false);
       setError(null);
       reset();
+      await queryClient.invalidateQueries(['users']);
     } catch (error) {
       setError(error.response.data.message);
     }

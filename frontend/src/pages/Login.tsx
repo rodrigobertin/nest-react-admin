@@ -3,6 +3,7 @@ import { Loader } from 'react-feather';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
+import logo from '../assets/urbano-logo.png';
 import useAuth from '../hooks/useAuth';
 import LoginRequest from '../models/auth/LoginRequest';
 import authService from '../services/AuthService';
@@ -32,8 +33,9 @@ export default function Login() {
   return (
     <div className="h-full flex justify-center items-center">
       <div className="card shadow">
-        <h1 className="mb-3 text-center font-semibold text-4xl">Login</h1>
-        <hr />
+        <div>
+          <img src={logo} alt="Urbano Logo" className="mx-auto" />
+        </div>
         <form
           className="flex flex-col gap-5 mt-8 w-64"
           onSubmit={handleSubmit(onSubmit)}

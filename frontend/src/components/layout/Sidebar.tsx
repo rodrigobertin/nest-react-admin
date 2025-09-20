@@ -1,7 +1,8 @@
 import { BookOpen, Home, LogOut, Users } from 'react-feather';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
+import logo from '../../assets/urbano-logo-black.png';
 import useAuth from '../../hooks/useAuth';
 import authService from '../../services/AuthService';
 import SidebarItem from './SidebarItem';
@@ -12,6 +13,7 @@ interface SidebarProps {
 
 export default function Sidebar({ className }: SidebarProps) {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const { authenticatedUser, setAuthenticatedUser } = useAuth();
 
@@ -23,18 +25,21 @@ export default function Sidebar({ className }: SidebarProps) {
 
   return (
     <div className={'sidebar ' + className}>
-      <Link to="/" className="no-underline text-black">
-        <h1 className="font-semibold text-center">Carna Project</h1>
+      <Link to="/" className="no-underline  text-black">
+        <img src={logo} alt="" className={'m-auto'} />
       </Link>
       <nav className="mt-5 flex flex-col gap-3 flex-grow">
-        <SidebarItem to="/">
+        <SidebarItem to="/" active={location.pathname === '/'}>
           <Home /> Dashboard
         </SidebarItem>
-        <SidebarItem to="/courses">
+        <SidebarItem
+          to="/courses"
+          active={location.pathname.includes('/courses')}
+        >
           <BookOpen /> Courses
         </SidebarItem>
         {authenticatedUser.role === 'admin' ? (
-          <SidebarItem to="/users">
+          <SidebarItem to="/users" active={location.pathname === '/users'}>
             <Users /> Users
           </SidebarItem>
         ) : null}

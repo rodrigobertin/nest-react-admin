@@ -12,33 +12,35 @@ servidores con diferentes arquitecturas.
 
 También se actualizó la version de node a 22
 
-## Frontend
+### Frontend
+Resumen de cambios en funcionalidad, mejoras y diseño del FrontEnd:
 
-Resumen de actualizaciones en el frontend (rutas de React y dependencias):
+- Funcionalidad:
+  - Migración y refactor del sistema de rutas a React Router v6:
+    - Uso de <BrowserRouter>, <Routes> y <Route element={...}> (reemplaza <Switch> y la prop "component").
+    - Rutas protegidas y públicas mediante envoltorios compatibles con v6:
+      - PrivateRoute: verifica sesión y roles antes de renderizar; redirige con Navigate a "/login" o "/" según corresponda.
+      - AuthRoute: bloquea el acceso a "/login" si ya hay sesión activa y redirige a "/".
+    - Definición centralizada de rutas en src/App.tsx: "/" (Dashboard), "/courses", "/courses/:id", "/users" (solo admin) y "/login".
 
-- Migración y refactor del sistema de rutas a React Router v6:
-  - Uso de <BrowserRouter>, <Routes> y <Route> con la prop "element" (reemplaza el patrón anterior con <Switch> y la prop "component").
-  - Implementación de rutas protegidas y públicas mediante envoltorios compatibles con v6:
-    - PrivateRoute: verifica usuario autenticado y roles antes de renderizar el componente; redirige con Navigate a "/login" o "/" según corresponda.
-    - AuthRoute: bloquea el acceso a "/login" si ya hay sesión activa y redirige a "/".
-  - Definición centralizada de rutas en src/App.tsx con las siguientes rutas: "/" (Dashboard), "/courses", "/courses/:id", "/users" (solo rol admin) y "/login".
-  - Uso de Navigate (alias de Redirect) según la API de v6 para las redirecciones.
+- Mejoras:
+  - Uso eficiente de React Query, se elimina las llamadas constantes cada 1 segundo de los datos tanto en Courses, Users y Contents 
+   asi evitando fetchs de datos innecesarios
+  - Se aplica un refresh de datos al crear, eliminar o editar una nueva entrada
 
-- Actualizaciones de dependencias relevantes en frontend/package.json:
-  - react-router-dom: 6 (adopción de API v6 y tipados acordes).
-  - axios: 1.12.0.
-  - Tooling y estilos: tailwindcss 3.4.x, postcss 8.5.x, autoprefixer 10.4.x.
-  - Tipos y utilidades de testing actualizados en línea con React 17 y react-scripts 5.
-
-- Alineación de versión de Node: se recomienda Node 22 para desarrollo/CI, coherente con el backend y el entorno del proyecto.
+- Diseño y estilos:
+  - Branding y activos visuales:
+    - Se aplica el logo de la empresa tanto en el sidebar como en el login.
+    - Fondo del menú lateral con transparencia.
+  - Rediseño de Sidebar:
+    - Actualizaciones SidebarItem.tsx para mejorar estados activos, legibilidad.
+    - Integración del logo y mejor jerarquía visual del menú.
 
 
-## Backend
-- Se cambió el puerto a 5001 debido a problemas con el entorno local en mac os
+### Backend
+- Se cambió el puerto a 5001 debido a problemas con el entorno local en Mac os
 
-
-## Docker Compose
-
+### Docker Compose
 Resumen de mejoras y configuración del orquestado con Docker Compose:
 
 - Base de datos:
@@ -49,10 +51,10 @@ Resumen de mejoras y configuración del orquestado con Docker Compose:
   - Carga de variables desde .env compartido.
   - Puerto publicado 5432:5432 para conexiones locales (CLI/cliente SQL).
 - Backend:
-  - Uso de env_file: .env para credenciales/config comunes.
+  - Uso de env_file: .env.template para credenciales/config comunes.
   - Se agregó un restart: on-failure para resiliencia básica.
   - Alineado con Node 22 y uso de bcryptjs (evita toolchain nativo en ARM/AMD).
 - Frontend:
   - Se agregó un restart: on-failure.
-- Un único .env centraliza y reutiliza configuración entre servicios (DB, API, etc.).
+- Un único .env.template centraliza y reutiliza configuración entre servicios (DB, API, etc.).
 - Se agregaron redes para aislar mejor los servicios y mejorar la seguridad y escalabilidad del proyecto
