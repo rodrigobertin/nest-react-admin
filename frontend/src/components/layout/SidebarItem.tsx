@@ -17,8 +17,8 @@ export default function SidebarItem({
     <Link
       to={to}
       className={
-        'no-underline text-black hover:bg-white rounded-md p-3 transition-colors' +
-        (active ? ' bg-white' : '')
+        'no-underline text-black rounded-md p-3 transition-colors link' +
+        (active ? ' active-link' : '')
       }
     >
       <span className="flex gap-5 font-semibold">

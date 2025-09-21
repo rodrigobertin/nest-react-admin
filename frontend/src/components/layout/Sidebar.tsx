@@ -2,7 +2,7 @@ import { BookOpen, Home, LogOut, Users } from 'react-feather';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-import logo from '../../assets/urbano-logo-black.png';
+import logo from '../../assets/urbano-logo-white.png';
 import useAuth from '../../hooks/useAuth';
 import authService from '../../services/AuthService';
 import SidebarItem from './SidebarItem';
@@ -45,10 +45,10 @@ export default function Sidebar({ className }: SidebarProps) {
         ) : null}
       </nav>
       <button
-        className="text-red-500 rounded-md p-3 transition-colors flex gap-3 justify-center items-center font-semibold focus:outline-none"
+        className="link logout rounded-md p-3 transition-colors flex gap-3 justify-center items-center font-semibold focus:outline-none"
         onClick={handleLogout}
       >
-        <LogOut /> Logout
+        <LogOut /> <span>Logout</span>
       </button>
     </div>
   );
