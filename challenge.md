@@ -1,4 +1,4 @@
-## Challenge 
+## Challenge documentación
 
 ### Pasos iniciales
 Al intentar iniciar el proyecto con Docker se encontraron errores relacionados con las dependencias de bcrypt.
@@ -71,7 +71,7 @@ Resumen de mejoras y configuración del orquestado con Docker Compose:
 
 
 ### Conclusión
-Se realizaron los cambios y optimizaciones necesarias para una solución rapida.
+Se realizaron los cambios y optimizaciones necesarias para una solución rapida como pedía el challenge.
 
 En cuanto a FrontEnd se realizaron refactorizaciones mayores necesarias para el correcto funcionamiento.
 Se actualizaron librerias y se realizaron optimizaciones de carga de datos, y mejoras visuales.
