@@ -68,7 +68,7 @@ Resumen de mejoras y configuración del orquestado con Docker Compose:
   - Se agregó un restart: on-failure.
   - Se agregaron redes para aislar mejor los servicios y mejorar la seguridad y escalabilidad del proyecto
   - Se usan imagenes con número de versión específica evitando el uso de :latest que no suele ser una buena práctica.
-
+- Se agregó un docker-compose.prod.yml para despliegue en producción usando docker swarm 
 
 ### Conclusión
 Se realizaron los cambios y optimizaciones necesarias para una solución rapida como pedía el challenge.
