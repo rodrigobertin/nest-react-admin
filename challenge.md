@@ -77,4 +77,5 @@ En cuanto a FrontEnd se realizaron refactorizaciones mayores necesarias para el 
 Se actualizaron librerias y se realizaron optimizaciones de carga de datos, y mejoras visuales.
 
 En cuanto a Backend, se realizaron refactorizaciones menores para compatibilidad de diferentes arquitecturas y optimizaciones para despliegue.
-En terminos generales de funcionamiento el proyecto estaba óptimo y funcional.
+En terminos generales de funcionamiento el proyecto estaba óptimo y funcional. Por ende considerando una entrega rapida 
+no vi necesarios cambios en temas de endpoints y demás.
