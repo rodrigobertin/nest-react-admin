@@ -21,19 +21,16 @@ export default function Users() {
   const [addUserShow, setAddUserShow] = useState<boolean>(false);
   const [error, setError] = useState<string>();
 
-  const { data, isLoading } = useQuery(
-    ['users', firstName, lastName, username, role],
-    async () => {
-      return (
-        await userService.findAll({
-          firstName: firstName || undefined,
-          lastName: lastName || undefined,
-          username: username || undefined,
-          role: role || undefined,
-        })
-      ).filter((user) => user.id !== authenticatedUser.id);
-    },
-  );
+  const { data, isLoading } = useQuery(['users', firstName, lastName, username, role], async () => {
+    return (
+      await userService.findAll({
+        firstName: firstName || undefined,
+        lastName: lastName || undefined,
+        username: username || undefined,
+        role: role || undefined,
+      })
+    ).filter((user) => user.id !== authenticatedUser.id);
+  });
 
   const {
     register,
@@ -58,10 +55,7 @@ export default function Users() {
     <Layout>
       <h1 className="font-semibold text-3xl mb-5">Manage Users</h1>
       <hr />
-      <button
-        className="btn my-5 flex gap-2 w-full sm:w-auto justify-center"
-        onClick={() => setAddUserShow(true)}
-      >
+      <button className="btn my-5 flex gap-2 w-full sm:w-auto justify-center" onClick={() => setAddUserShow(true)}>
         <Plus /> Add User
       </button>
 
@@ -90,13 +84,7 @@ export default function Users() {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
-          <select
-            name=""
-            id=""
-            className="input w-1/2"
-            value={role}
-            onChange={(e) => setRole(e.target.value)}
-          >
+          <select name="" id="" className="input w-1/2" value={role} onChange={(e) => setRole(e.target.value)}>
             <option value="">All</option>
             <option value="user">User</option>
             <option value="editor">Editor</option>
@@ -124,10 +112,7 @@ export default function Users() {
         </div>
         <hr />
 
-        <form
-          className="flex flex-col gap-5 mt-5"
-          onSubmit={handleSubmit(saveUser)}
-        >
+        <form className="flex flex-col gap-5 mt-5" onSubmit={handleSubmit(saveUser)}>
           <div className="flex flex-col gap-5 sm:flex-row">
             <input
               type="text"
@@ -162,28 +147,15 @@ export default function Users() {
             disabled={isSubmitting}
             {...register('password')}
           />
-          <select
-            className="input"
-            required
-            {...register('role')}
-            disabled={isSubmitting}
-          >
+          <select className="input" required {...register('role')} disabled={isSubmitting}>
             <option value="user">User</option>
             <option value="editor">Editor</option>
             <option value="admin">Admin</option>
           </select>
           <button className="btn" disabled={isSubmitting}>
-            {isSubmitting ? (
-              <Loader className="animate-spin mx-auto" />
-            ) : (
-              'Save'
-            )}
+            {isSubmitting ? <Loader className="animate-spin mx-auto" /> : 'Save'}
           </button>
-          {error ? (
-            <div className="text-red-500 p-3 font-semibold border rounded-md bg-red-50">
-              {error}
-            </div>
-          ) : null}
+          {error ? <div className="text-red-500 p-3 font-semibold border rounded-md bg-red-50">{error}</div> : null}
         </form>
       </Modal>
     </Layout>

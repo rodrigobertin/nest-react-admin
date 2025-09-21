@@ -27,18 +27,25 @@ Resumen de cambios en funcionalidad, mejoras y diseño del FrontEnd:
   - Uso eficiente de React Query, se elimina las llamadas constantes cada 1 segundo de los datos tanto en Courses, Users y Contents 
    asi evitando fetchs de datos innecesarios
   - Se aplica un refresh de datos al crear, eliminar o editar una nueva entrada
-
+  - Se aplicaron iconos en los botones de acciones en las tablas de datos para mejorar la UI.
+ 
 - Diseño y estilos:
   - Branding y activos visuales:
     - Se aplica el logo de la empresa tanto en el sidebar como en el login.
-    - Fondo del menú lateral con transparencia.
+    - Fondo del menú lateral con imagen.
   - Rediseño de Sidebar:
     - Actualizaciones SidebarItem.tsx para mejorar estados activos, legibilidad.
     - Integración del logo y mejor jerarquía visual del menú.
-
+  - Repositorio
+    - Se agregó un [.editorconfig](frontend/.editorconfig) para mejorar la consistencia de estilo y formato en el proyecto, util para trabajo en equipos.
 
 ### Backend
 - Se cambió el puerto a 5001 debido a problemas con el entorno local en Mac os
+- Se creó una variable de entorno para el tipo de environment (ENV) y asi ajustar la sincronización de la base de datos,
+  ya que synchronize no debe usarse en un entorno productivo, solo es para desarrollo local.
+- Se realizaron los ajustes para migraciones
+- Repositorio
+  - Se agregó un [.editorconfig](backend/.editorconfig) para mejorar la consistencia de estilo y formato en el proyecto, util para trabajo en equipos.
 
 ### Docker Compose
 Resumen de mejoras y configuración del orquestado con Docker Compose:
@@ -48,7 +55,7 @@ Resumen de mejoras y configuración del orquestado con Docker Compose:
     así evitar la mala práctica de no poner el número de versión específica,
     esto puede generar errores si el container se vuelve a crear.
   - Persistencia de datos con volumen bind: database -> /var/lib/postgresql/data.
-  - Carga de variables desde .env compartido.
+  - Carga de variables desde .env.template compartido.
   - Puerto publicado 5432:5432 para conexiones locales (CLI/cliente SQL).
 - Backend:
   - Uso de env_file: .env.template para credenciales/config comunes.
@@ -56,5 +63,5 @@ Resumen de mejoras y configuración del orquestado con Docker Compose:
   - Alineado con Node 22 y uso de bcryptjs (evita toolchain nativo en ARM/AMD).
 - Frontend:
   - Se agregó un restart: on-failure.
-- Un único .env.template centraliza y reutiliza configuración entre servicios (DB, API, etc.).
-- Se agregaron redes para aislar mejor los servicios y mejorar la seguridad y escalabilidad del proyecto
+  - Un único .env.template centraliza y reutiliza configuración entre servicios (DB, API, etc.).
+  - Se agregaron redes para aislar mejor los servicios y mejorar la seguridad y escalabilidad del proyecto
