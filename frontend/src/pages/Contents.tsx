@@ -31,13 +31,11 @@ export default function Course() {
     reset,
   } = useForm<CreateContentRequest>();
 
-  const { data, isLoading } = useQuery(
-    [`contents-${id}`, name, description],
-    async () =>
-      contentService.findAll(id, {
-        name: name || undefined,
-        description: description || undefined,
-      }),
+  const { data, isLoading } = useQuery([`contents-${id}`, name, description], async () =>
+    contentService.findAll(id, {
+      name: name || undefined,
+      description: description || undefined,
+    }),
   );
 
   const saveContent = async (createContentRequest: CreateContentRequest) => {
@@ -54,15 +52,10 @@ export default function Course() {
 
   return (
     <Layout>
-      <h1 className="font-semibold text-3xl mb-5">
-        {!userQuery.isLoading ? `${userQuery.data.name} Contents` : ''}
-      </h1>
+      <h1 className="font-semibold text-3xl mb-5">{!userQuery.isLoading ? `${userQuery.data.name} Contents` : ''}</h1>
       <hr />
       {authenticatedUser.role !== 'user' ? (
-        <button
-          className="btn my-5 flex gap-2 w-full sm:w-auto justify-center"
-          onClick={() => setAddContentShow(true)}
-        >
+        <button className="btn my-5 flex gap-2 w-full sm:w-auto justify-center" onClick={() => setAddContentShow(true)}>
           <Plus /> Add Content
         </button>
       ) : null}
@@ -104,10 +97,7 @@ export default function Course() {
         </div>
         <hr />
 
-        <form
-          className="flex flex-col gap-5 mt-5"
-          onSubmit={handleSubmit(saveContent)}
-        >
+        <form className="flex flex-col gap-5 mt-5" onSubmit={handleSubmit(saveContent)}>
           <input
             type="text"
             className="input"
@@ -125,17 +115,9 @@ export default function Course() {
             {...register('description')}
           />
           <button className="btn" disabled={isSubmitting}>
-            {isSubmitting ? (
-              <Loader className="animate-spin mx-auto" />
-            ) : (
-              'Save'
-            )}
+            {isSubmitting ? <Loader className="animate-spin mx-auto" /> : 'Save'}
           </button>
-          {error ? (
-            <div className="text-red-500 p-3 font-semibold border rounded-md bg-red-50">
-              {error}
-            </div>
-          ) : null}
+          {error ? <div className="text-red-500 p-3 font-semibold border rounded-md bg-red-50">{error}</div> : null}
         </form>
       </Modal>
     </Layout>

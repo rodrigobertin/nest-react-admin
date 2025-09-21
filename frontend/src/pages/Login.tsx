@@ -36,10 +36,7 @@ export default function Login() {
         <div>
           <img src={logo} alt="Urbano Logo" className="mx-auto" />
         </div>
-        <form
-          className="flex flex-col gap-5 mt-8 w-64"
-          onSubmit={handleSubmit(onSubmit)}
-        >
+        <form className="flex flex-col gap-5 mt-8 w-64" onSubmit={handleSubmit(onSubmit)}>
           <input
             type="text"
             className="input sm:text-lg"
@@ -56,22 +53,10 @@ export default function Login() {
             disabled={isSubmitting}
             {...register('password')}
           />
-          <button
-            className="btn mt-3 sm:text-lg"
-            type="submit"
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? (
-              <Loader className="animate-spin mx-auto" />
-            ) : (
-              'Login'
-            )}
+          <button className="btn mt-3 sm:text-lg" type="submit" disabled={isSubmitting}>
+            {isSubmitting ? <Loader className="animate-spin mx-auto" /> : 'Login'}
           </button>
-          {error ? (
-            <div className="text-red-500 p-3 font-semibold border rounded-md bg-red-50">
-              {error}
-            </div>
-          ) : null}
+          {error ? <div className="text-red-500 p-3 font-semibold border rounded-md bg-red-50">{error}</div> : null}
         </form>
       </div>
     </div>

@@ -8,18 +8,11 @@ interface SidebarItemProps {
   active?: boolean;
 }
 
-export default function SidebarItem({
-  children,
-  to,
-  active = false,
-}: SidebarItemProps) {
+export default function SidebarItem({ children, to, active = false }: SidebarItemProps) {
   return (
     <Link
       to={to}
-      className={
-        'no-underline text-black rounded-md p-3 transition-colors link' +
-        (active ? ' active-link' : '')
-      }
+      className={'no-underline text-black rounded-md p-3 transition-colors link' + (active ? ' active-link' : '')}
     >
       <span className="flex gap-5 font-semibold">
         {children} {active ? <ChevronRight /> : null}

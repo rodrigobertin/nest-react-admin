@@ -39,14 +39,8 @@ export default function App() {
         {/* Protected routes */}
         <Route path="/" element={<PrivateRoute component={Dashboard} />} />
         <Route path="/courses" element={<PrivateRoute component={Courses} />} />
-        <Route
-          path="/courses/:id"
-          element={<PrivateRoute component={Contents} />}
-        />
-        <Route
-          path="/users"
-          element={<PrivateRoute component={Users} roles={['admin']} />}
-        />
+        <Route path="/courses/:id" element={<PrivateRoute component={Contents} />} />
+        <Route path="/users" element={<PrivateRoute component={Users} roles={['admin']} />} />
 
         {/* Public route */}
         <Route path="/login" element={<AuthRoute component={Login} />} />

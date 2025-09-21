@@ -59,7 +59,7 @@ export default function UsersTable({ data, isLoading }: UsersTableProps) {
   return (
     <>
       <div className="table-container">
-        <Table columns={['Name', 'Username', 'Status', 'Role', 'Created']}>
+        <Table columns={['Name', 'Username', 'Status', 'Role']}>
           {isLoading
             ? null
             : data.map(({ id, firstName, lastName, role, isActive, username }) => (

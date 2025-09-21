@@ -32,10 +32,7 @@ export default function Sidebar({ className }: SidebarProps) {
         <SidebarItem to="/" active={location.pathname === '/'}>
           <Home /> Dashboard
         </SidebarItem>
-        <SidebarItem
-          to="/courses"
-          active={location.pathname.includes('/courses')}
-        >
+        <SidebarItem to="/courses" active={location.pathname.includes('/courses')}>
           <BookOpen /> Courses
         </SidebarItem>
         {authenticatedUser.role === 'admin' ? (

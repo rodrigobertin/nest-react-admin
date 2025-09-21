@@ -25,7 +25,7 @@ Resumen de cambios en funcionalidad, mejoras y diseño del FrontEnd:
 
 - Mejoras:
   - Uso eficiente de React Query, se elimina las llamadas constantes cada 1 segundo de los datos tanto en Courses, Users y Contents 
-   asi evitando fetchs de datos innecesarios
+   asi evitando consultas de datos innecesarios
   - Se aplica un refresh de datos al crear, eliminar o editar una nueva entrada
   - Se aplicaron iconos en los botones de acciones en las tablas de datos para mejorar la UI.
  
@@ -44,6 +44,7 @@ Resumen de cambios en funcionalidad, mejoras y diseño del FrontEnd:
 - Se creó una variable de entorno para el tipo de environment (ENV) y asi ajustar la sincronización de la base de datos,
   ya que synchronize no debe usarse en un entorno productivo, solo es para desarrollo local.
 - Se realizaron los ajustes para migraciones
+
 - Repositorio
   - Se agregó un [.editorconfig](backend/.editorconfig) para mejorar la consistencia de estilo y formato en el proyecto, util para trabajo en equipos.
 

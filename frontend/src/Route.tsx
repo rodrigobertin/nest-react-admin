@@ -10,11 +10,7 @@ interface PrivateRouteProps {
   roles?: string[];
 }
 
-export function PrivateRoute({
-  component: Component,
-  roles,
-  ...rest
-}: PrivateRouteProps) {
+export function PrivateRoute({ component: Component, roles, ...rest }: PrivateRouteProps) {
   const { authenticatedUser } = useContext(AuthenticationContext);
 
   if (authenticatedUser) {
