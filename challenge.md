@@ -28,7 +28,9 @@ Resumen de cambios en funcionalidad, mejoras y diseño del FrontEnd:
    asi evitando consultas de datos innecesarios
   - Se aplica un refresh de datos al crear, eliminar o editar una nueva entrada
   - Se aplicaron iconos en los botones de acciones en las tablas de datos para mejorar la UI.
- 
+  - Se ajustó él [.dockerignore](frontend/.dockerignore) para reducir peso de la imagen.
+  - Optimizaciones en Dockerfile para reducir peso de la imagen, usando versiones exactas de node
+
 - Diseño y estilos:
   - Branding y activos visuales:
     - Se aplica el logo de la empresa tanto en el sidebar como en el login.
@@ -44,6 +46,8 @@ Resumen de cambios en funcionalidad, mejoras y diseño del FrontEnd:
 - Se creó una variable de entorno para el tipo de environment (ENV) y asi ajustar la sincronización de la base de datos,
   ya que synchronize no debe usarse en un entorno productivo, solo es para desarrollo local.
 - Se realizaron los ajustes para migraciones
+- Se ajustó él [.dockerignore](backend/.dockerignore) para reducir peso de la imagen.
+- Se agregaron scripts de migraciones de TypeORM
 
 - Repositorio
   - Se agregó un [.editorconfig](backend/.editorconfig) para mejorar la consistencia de estilo y formato en el proyecto, util para trabajo en equipos.
@@ -64,5 +68,4 @@ Resumen de mejoras y configuración del orquestado con Docker Compose:
   - Alineado con Node 22 y uso de bcryptjs (evita toolchain nativo en ARM/AMD).
 - Frontend:
   - Se agregó un restart: on-failure.
-  - Un único .env.template centraliza y reutiliza configuración entre servicios (DB, API, etc.).
   - Se agregaron redes para aislar mejor los servicios y mejorar la seguridad y escalabilidad del proyecto
