@@ -62,7 +62,7 @@ Resumen de mejoras y configuración del orquestado con Docker Compose:
 - Backend:
   - Uso de env_file: .env.template para credenciales/config comunes.
   - Se agregó un restart: on-failure para resiliencia básica.
-  - Alineado con Node 22 y uso de bcryptjs (evita toolchain nativo en ARM/AMD).
+  - Compatible con Node 22 y uso de bcryptjs.
   - Se usan imagenes con número de versión específica evitando el uso de :latest que no suele ser una buena práctica.
 - Frontend:
   - Se agregó un restart: on-failure.
