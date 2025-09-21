@@ -45,12 +45,9 @@ Resumen de cambios en funcionalidad, mejoras y diseño del FrontEnd:
 - Se cambió el puerto a 5001 debido a problemas con el entorno local en Mac os
 - Se creó una variable de entorno para el tipo de environment (ENV) y asi ajustar la sincronización de la base de datos,
   ya que synchronize no debe usarse en un entorno productivo, solo es para desarrollo local.
-- Se realizaron los ajustes para migraciones
 - Se ajustó él [.dockerignore](backend/.dockerignore) para reducir peso de la imagen.
-- Se agregaron scripts de migraciones de TypeORM
-
-- Repositorio
-  - Se agregó un [.editorconfig](backend/.editorconfig) para mejorar la consistencia de estilo y formato en el proyecto, util para trabajo en equipos.
+- Se agregaron scripts de migraciones de TypeORM para usar en CI-CD
+- Se agregó un [.editorconfig](backend/.editorconfig) para mejorar la consistencia de estilo y formato en el proyecto, util para trabajo en equipos.
 
 ### Docker Compose
 Resumen de mejoras y configuración del orquestado con Docker Compose:
@@ -66,6 +63,18 @@ Resumen de mejoras y configuración del orquestado con Docker Compose:
   - Uso de env_file: .env.template para credenciales/config comunes.
   - Se agregó un restart: on-failure para resiliencia básica.
   - Alineado con Node 22 y uso de bcryptjs (evita toolchain nativo en ARM/AMD).
+  - Se usan imagenes con número de versión específica evitando el uso de :latest que no suele ser una buena práctica.
 - Frontend:
   - Se agregó un restart: on-failure.
   - Se agregaron redes para aislar mejor los servicios y mejorar la seguridad y escalabilidad del proyecto
+  - Se usan imagenes con número de versión específica evitando el uso de :latest que no suele ser una buena práctica.
+
+
+### Conclusión
+Se realizaron los cambios y optimizaciones necesarias para una solución rapida.
+
+En cuanto a FrontEnd se realizaron refactorizaciones mayores necesarias para el correcto funcionamiento.
+Se actualizaron librerias y se realizaron optimizaciones de carga de datos, y mejoras visuales.
+
+En cuanto a Backend, se realizaron refactorizaciones menores para compatibilidad de diferentes arquitecturas y optimizaciones para despliegue.
+En terminos generales de funcionamiento el proyecto estaba óptimo y funcional.
